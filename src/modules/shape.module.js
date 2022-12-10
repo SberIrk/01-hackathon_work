@@ -1,59 +1,58 @@
-import {Module} from '../core/module'
+import {Module} from '@/core/module'
+import {random} from "@/utils";
 
 export class ShapeModule extends Module {
-    function getRandomNumber(min, max) {
-        return Math.random() * (max - min) + min;
+
+    #el = document.createElement('div');
+
+    constructor(type) {
+        super(type,'Случайна фигура');
     }
-    
-    const rectangle = document.createElement('div');
-    // document.body.prepend(rectangle);
-    rectangle.classList = 'shape-rectangle';
-    rectangle.style.width = `${getRandomNumber(50, 120)}px`;
-    rectangle.style.height = `${getRandomNumber(50, 120)}px`;
-    rectangle.style.background = `rgb(${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)})`;
-    rectangle.style.transform = `rotate(${getRandomNumber(0, 360)}deg)`;
-    rectangle.style.position = 'absolute';
-    rectangle.style.left = `${getRandomNumber(10, 90)}%`;
-    rectangle.style.top = `${getRandomNumber(10, 90)}%`;
-    
-    const circle = document.createElement('div');
-    // document.body.prepend(circle);
-    circle.classList = 'shape-circle';
-    circle.style.borderRadius = `${getRandomNumber(30, 90)}px`
-    circle.style.width = `${getRandomNumber(50, 120)}px`;
-    circle.style.height = `${getRandomNumber(50, 120)}px`;
-    circle.style.background = `rgb(${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)})`;
-    circle.style.transform = `rotate(${getRandomNumber(0, 360)}deg)`;
-    circle.style.position = 'absolute';
-    circle.style.left = `${getRandomNumber(10, 90)}%`;
-    circle.style.top = `${getRandomNumber(10, 90)}%`;
-    
-    const triangle = document.createElement('div');
-    // document.body.prepend(triangle);
-    triangle.classList = 'shape-triangle';
-    triangle.style.maxWidth = `${getRandomNumber(50, 60)}px`
-    triangle.style.borderBottom = `${getRandomNumber(50, 60)}px solid rgb(${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)}, ${getRandomNumber(1, 255)})`;
-    triangle.style.borderLeft = `${getRandomNumber(0, 60)}px solid transparent`;
-    triangle.style.borderRight = `${getRandomNumber(0, 60)}px solid transparent`;
-    triangle.style.transform = `rotate(${getRandomNumber(0, 360)}deg)`;
-    triangle.style.position = 'absolute';
-    triangle.style.left = `${getRandomNumber(10, 90)}%`;
-    triangle.style.top = `${getRandomNumber(10, 90)}%`;
-    
-    function createRandomShape() {
-        switch(Math.floor(Math.random() * 3)) {
-            case 0 :
-                document.body.prepend(rectangle);
-                break;
-            case 1 :
-                document.body.prepend(circle);
-                break;
-            case 2 :
-                document.body.prepend(triangle);
-                break;
-        };
+
+    createRectangle(){
+        this.#el.classList = 'shape-rectangle';
+        this.#createRandomPosition();
+        this.#createRandomSize();
+    }
+
+    createCircle(){
+        this.#el.classList = 'shape-circle';
+        this.#createRandomPosition();
+        this.#createRandomSize();
+        this.#el.style.borderRadius = `${random(30, 90)}px`
+    }
+
+    createTriangle(){
+        this.#el.classList = 'shape-triangle';
+        this.#createRandomPosition();
+        this.#el.style.maxWidth = `${random(50, 60)}px`
+        this.#el.style.borderBottom = `${random(50, 60)}px solid rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
+        this.#el.style.borderLeft = `${random(0, 60)}px solid transparent`;
+        this.#el.style.borderRight = `${random(0, 60)}px solid transparent`;
+    }
+
+    #createRandomPosition(){
+        this.#el.style.transform = `rotate(${random(0, 360)}deg)`;//
+        this.#el.style.position = 'absolute';//
+        this.#el.style.left = `${random(10, 90)}%`;//
+        this.#el.style.top = `${random(10, 90)}%`; //
+    }
+
+    #createRandomSize(){
+        this.#el.style.width = `${random(50, 120)}px`;
+        this.#el.style.height = `${random(50, 120)}px`;
+        this.#el.style.background = `rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
+    }
+
+    #listShapes = [
+        this.createRectangle.bind(this),
+        this.createCircle.bind(this),
+        this.createTriangle.bind(this)
+    ]
+
+    trigger() {
+        const runShape = this.#listShapes[random(1,this.#listShapes.length) - 1];
+        runShape();
+        document.body.prepend(this.#el);
       };
-    
-      createRandomShape();
-    
 }
