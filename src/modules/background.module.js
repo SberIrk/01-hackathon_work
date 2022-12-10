@@ -13,4 +13,12 @@ export class BackgroundModule extends Module {
         };
         document.body.style.backgroundColor = randomColor;
     }
+
+    trigger() {
+        this.changeBodyBackgroundColor();
+    }
+
+    close(){
+        document.body.style.background = '';
+    }
 }
