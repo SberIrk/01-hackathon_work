@@ -50,6 +50,10 @@ export class ShapeModule extends Module {
         this.createTriangle.bind(this)
     ]
 
+    close(){
+        this.#el.removeAttribute('style');
+    }
+
     trigger() {
         const runShape = this.#listShapes[random(1,this.#listShapes.length) - 1];
         runShape();

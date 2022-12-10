@@ -11,6 +11,10 @@ export class ContextMenu extends Menu {
         });
 
     }
+
+    // текущий модуль
+    #runModule;
+
     // функция открытие меню
     open(event) {
         console.log();
@@ -28,6 +32,10 @@ export class ContextMenu extends Menu {
         this.el.addEventListener('click',event=>{
             if(event.target.dataset.type === module.type){
                 thisClass.close();
+                if(thisClass.#runModule){
+                    thisClass.#runModule.close();
+                }
+                thisClass.#runModule = module;
                 module.trigger(); // что бы закрыть окно и потом открылса, например alert()
                 }
             }
