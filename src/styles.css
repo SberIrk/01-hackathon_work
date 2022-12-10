@@ -1,4 +1,7 @@
+/*
+Ошибка при коммите...Пока уберём...
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+*/
 
 * {
     margin: 0;
@@ -35,8 +38,49 @@ body {
     cursor: pointer;
     transition: background-color .2s ease-in;
     border-radius: inherit;
+    /* Не выделять текст при выборе пункта меню*/
+    user-select: none;
+
 }
 
 .menu .menu-item:hover {
     background: #343434;
+}
+
+.custom-message-box {
+    background: #FD722F;
+    padding: 15px 20px;
+    border-radius: 25px;
+    width: 300px;
+
+    /* white */
+    /* color: white; */
+    /* box-shadow: 0px 5px 10px white; */
+
+    /* black */
+    color: black;
+    box-shadow: 0px 5px 10px black;
+
+    display: none;
+}
+
+.custom-message-box b {
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
+
+.show {
+    display: inline-block;
+    animation: show 1s ease-in 1;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
