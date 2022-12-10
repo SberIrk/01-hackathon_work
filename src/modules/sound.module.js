@@ -11,14 +11,17 @@ export class SoundModule extends Module {
      * @param {string} type Тип осцилятора
      * @param {function} callback Функция асинхронного возврата
      * @param {boolean} play Флаг процесса воспроизведения звука
+     * @param {global} oscillator модуль осцилятора
+     * @param {global} gainNode модуль усиления звука
      */
     #duration = 3000;
-    #volume = 10
+    #volume = 0.05;
     #type = ["sine", "square", "sawtooth", "triangle"]
     #frequency = [-20000,20000];
     #play;
     #oscillator;
     #gainNode;
+
     #callback(){
         this.#play = false;
     }
@@ -29,6 +32,8 @@ export class SoundModule extends Module {
         // callback Функция асинхронного возврата
 
     }
+
+
 
     close(){
         this.#play = false;
