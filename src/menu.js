@@ -36,7 +36,7 @@ export class ContextMenu extends Menu {
                     thisClass.#runModule.close();
                 }
                 thisClass.#runModule = module;
-                module.trigger(); // что бы закрыть окно и потом открылса, например alert()
+                module.trigger();
                 }
             }
         );
