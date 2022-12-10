@@ -22,6 +22,12 @@ export class DiscoModule extends Module {
         thisClass.#shape.trigger();
         thisClass.#background.trigger();
         thisClass.#audio.play();
+        //Повторяем после окончания трека
+        thisClass.#audio.addEventListener('ended', () => {
+            if(thisClass.#play){
+                thisClass.#audio.play();
+            }
+        });
         thisClass.#play = setInterval(()=>{
             thisClass.#shape.close();
             thisClass.#background.close();
@@ -33,6 +39,7 @@ export class DiscoModule extends Module {
     close(){
         const thisClass = this;
         clearInterval(thisClass.#play);
+        thisClass.#play = null;
         thisClass.#background.close();
         thisClass.#shape.close();
         thisClass.#msg.close();
