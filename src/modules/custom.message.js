@@ -10,7 +10,7 @@ export class CustomMessage extends Module {
         this.#showMessages(dataMessage)
     }
     close() {
-        this.#removeMessage();
+        this.removeMessage();
         clearInterval(this.#timerId);
     }
     #showMessages(array) {
@@ -19,10 +19,10 @@ export class CustomMessage extends Module {
 
         let currentId = array[0].id
         const go = () => {
-            this.#removeMessage()
+            this.removeMessage()
             let currentText = array.find(element => element.id === currentId).message
             let currentFrom = array.find(element => element.id === currentId).from
-            this.#renderMessage(currentId, currentText, currentFrom)
+            this.renderMessage(currentId, currentText, currentFrom)
             if (currentId === array.length) {
                 // clearInterval(this.#timerId)
                 currentId = 0
@@ -32,7 +32,7 @@ export class CustomMessage extends Module {
         go()
         thisClass.#timerId = setInterval(go, 5000)
     }
-    #renderMessage(id, text, from) {
+    renderMessage(id, text, from) {
         document.body.insertAdjacentHTML(
             'beforeend',
             `<div class="custom-message-box" id="${id}"><span>${text}</span><b>${from}</b></div>`
@@ -40,7 +40,7 @@ export class CustomMessage extends Module {
         this.messageHTML = document.querySelector('.custom-message-box')
         this.messageHTML.classList.toggle('show')
     }
-    #removeMessage() {
+    removeMessage() {
         if (this.messageHTML) {
             this.messageHTML.remove()
         }

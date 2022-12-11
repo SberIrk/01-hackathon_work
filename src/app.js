@@ -7,7 +7,7 @@ import {CustomMessage} from "@/modules/custom.message";
 import {BackgroundModule} from "@/modules/background.module.js";
 import {dataMessage} from "@/dataMessage.js";
 import {DiscoModule} from "@/modules/disco.module.js";
-import {TestWinModule} from "@/modules/testWin.module.js";
+import {MessengerModule} from "@/modules/messenger.module.js";
 
 
 function init() {
@@ -17,7 +17,7 @@ function init() {
     menu.add(new CustomMessage('CustomMessage'));
     menu.add(new BackgroundModule('BackgroundModule'));
     menu.add(new DiscoModule('DiscoModule'));
-    menu.add(new TestWinModule('TestWinModule'));
+    menu.add(new MessengerModule('MessengerModule'));
 
 }
 
