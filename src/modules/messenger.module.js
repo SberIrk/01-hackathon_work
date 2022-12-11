@@ -3,7 +3,7 @@ import {CreateWin} from "@/core/win.js"
 import {createElement} from "@/utils";
 import {CustomMessage} from "@/modules/custom.message";
 
-// Над модулем работал Нахимов Алексей
+// Над модулем работал Клопов Дмитрий
 
 export class MessengerModule extends Module {
     constructor(type) {
