@@ -1,67 +1,48 @@
 import { Module } from "@/core/module";
+import { dataMessage } from '@/dataMessage'
 
 export class CustomMessage extends Module {
-    // При создании класса будем получать рандомные сообщение, а не при тригере...
-    constructor(type, listMsg) {
-        // Кнопку назавём тут и передадим родителю
-        super(type, 'Случайное сообщение');
-        this.listMsg = listMsg;
+    #timerId
+    constructor(type) {
+        super(type, 'Случайное сообщение')
     }
-
-    // Нужно индекс setInterval для закрытия
-    #timerId;
-
-    // Тоже перевёл функцию в класс, нужна для функции close
-    #removeMessage = () => {
-        const messageHTML = document.querySelector('.custom-message-box')
-        if (messageHTML) {
-            messageHTML.remove()
-        }
+    trigger() {
+        this.#showMessages(dataMessage)
     }
-
-    // Нужно индекс setInterval для закрытия
-    close(){
+    close() {
         this.#removeMessage();
         clearInterval(this.#timerId);
     }
-
-    // Остальные функции перевёл в переменные, т.к. так как получаю ошибку при запуске
-    // Ну лучше переделать их в методы класса...
-    trigger() {
-
-        const dataMessage = this.listMsg;
+    #showMessages(array) {
+        // При создании класса будем получать рандомные сообщение, а не при тригере...
         const thisClass = this;
-        const renderMessage =  function (current, currentText, currentFrom) {
-            document.body.insertAdjacentHTML(
-                'beforeend',
-                `<div class="custom-message-box" id="${current}"><span>${currentText}</span><b>${currentFrom}</b></div>`
-            )
-            const messageHTML = document.querySelector('.custom-message-box')
-            messageHTML.classList.toggle('show')
-        }
 
-        //запускает работу модуля. Внутри этого метода описана логика того, что будет происходить при клике
-         const showMessage = function(from, to) {
-            let current = dataMessage[from].id
-
-            const go = function () {
-                thisClass.#removeMessage();
-                let currentText = dataMessage.find(element => element.id === current).message
-                let currentFrom = dataMessage.find(element => element.id === current).from
-                // console.log(current)
-                // console.log(currentText)
-                renderMessage(current, currentText, currentFrom)
-                //------------------------
-                if (current === to) {
-                    // clearInterval(this.#timerId)
-                    current = from
-                }
-                current++;
+        let currentId = array[0].id
+        const go = () => {
+            this.#removeMessage()
+            let currentText = array.find(element => element.id === currentId).message
+            let currentFrom = array.find(element => element.id === currentId).from
+            this.#renderMessage(currentId, currentText, currentFrom)
+            if (currentId === array.length) {
+                // clearInterval(this.#timerId)
+                currentId = 0
             }
-
-            go();
-            thisClass.#timerId = setInterval(go, 5000)
+            currentId++;
         }
-        showMessage(0, dataMessage.length);
+        go()
+        thisClass.#timerId = setInterval(go, 5000)
+    }
+    #renderMessage(id, text, from) {
+        document.body.insertAdjacentHTML(
+            'beforeend',
+            `<div class="custom-message-box" id="${id}"><span>${text}</span><b>${from}</b></div>`
+        )
+        this.messageHTML = document.querySelector('.custom-message-box')
+        this.messageHTML.classList.toggle('show')
+    }
+    #removeMessage() {
+        if (this.messageHTML) {
+            this.messageHTML.remove()
+        }
     }
 }
