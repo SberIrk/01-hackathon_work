@@ -1,4 +1,5 @@
-import {Module} from '../core/module'
+import {Module} from '@/core/module'
+import {randomColor} from "@/utils.js";
 
 export class BackgroundModule extends Module {
     constructor(type) {
@@ -6,12 +7,14 @@ export class BackgroundModule extends Module {
     }
 
     changeBodyBackgroundColor() {
-        const letters = '0123456789ABCDEF';
-        let randomColor = '#';
-        for(let i = 0; i < 6; i++) {
-            randomColor += letters[Math.floor(Math.random() * letters.length)];
-        };
-        document.body.style.backgroundColor = randomColor;
+        // Клопов: Перенес полезную функцию в Utilit, т.к. она также используеться в модуле shape.
+        // const letters = '0123456789ABCDEF';
+        // let randomColor = '#';
+        // for(let i = 0; i < 6; i++) {
+        //     randomColor += letters[Math.floor(Math.random() * letters.length)];
+        // };
+
+        document.body.style.backgroundColor = randomColor();
     }
 
     trigger() {

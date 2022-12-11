@@ -1,5 +1,5 @@
 import {Module} from '@/core/module'
-import {random} from "@/utils";
+import {random, randomColor} from "@/utils";
 
 export class ShapeModule extends Module {
 
@@ -26,7 +26,7 @@ export class ShapeModule extends Module {
         this.#el.classList = 'shape-triangle';
         this.#createRandomPosition();
         this.#el.style.maxWidth = `${random(50, 60)}px`
-        this.#el.style.borderBottom = `${random(50, 60)}px solid rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
+        this.#el.style.borderBottom = `${random(50, 60)}px solid ${randomColor()}`;
         this.#el.style.borderLeft = `${random(0, 60)}px solid transparent`;
         this.#el.style.borderRight = `${random(0, 60)}px solid transparent`;
     }
@@ -41,7 +41,7 @@ export class ShapeModule extends Module {
     #createRandomSize(){
         this.#el.style.width = `${random(50, 120)}px`;
         this.#el.style.height = `${random(50, 120)}px`;
-        this.#el.style.background = `rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
+        this.#el.style.background = randomColor();
     }
 
     #listShapes = [
