@@ -15,7 +15,7 @@ export class DiscoModule extends Module {
     #msg = new CustomMessage('1',dataMessage);
     #shape = new ShapeModule('2');
     #background = new BackgroundModule('3');
-    #audio = new Audio("https://cdn.mp3xa.me/Zx41PzxZA4FkJKXG-EYTog/1670744650/L29ubGluZS9tcDMvMjAyMC8xMC_QodC10LrRgtC-0YAg0JPQsNC30LAgLSDQn9Cw0YLRgNC40L7Rgi5tcDM");
+    #audio = new Audio("https://music-2021.ru/uploads/files/2021-11/1637828309_sektor-gaza-patriot.mp3");
     trigger(){
         const thisClass = this;
         thisClass.#msg.trigger();
