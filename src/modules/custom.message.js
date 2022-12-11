@@ -1,6 +1,8 @@
 import { Module } from "@/core/module";
 import { dataMessage } from '@/dataMessage'
 
+// Над модулем работал Клопов Дмитрий
+
 export class CustomMessage extends Module {
     #timerId
     constructor(type) {

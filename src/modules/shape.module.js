@@ -1,6 +1,8 @@
 import {Module} from '@/core/module'
 import {random, randomColor} from "@/utils";
 
+// Над модулем работал Кирсанов Алексей
+
 export class ShapeModule extends Module {
 
     #el = document.createElement('div');

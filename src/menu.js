@@ -1,5 +1,7 @@
 import {Menu} from './core/menu.js'
 
+// Над ContextMenu работал Клопов Дмитрий
+
 export class ContextMenu extends Menu {
     constructor(selector) {
         super(selector);

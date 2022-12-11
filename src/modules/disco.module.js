@@ -1,3 +1,6 @@
+
+// Над модулем работал Клопов Дмитрий
+
 import {Module} from '@/core/module'
 import {BackgroundModule} from "@/modules/background.module";
 import {ShapeModule} from "@/modules/shape.module";

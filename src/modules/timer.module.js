@@ -1,6 +1,6 @@
 import {Module} from "@/core/module";
 
-
+// Над модулем работала Олейник Анастасия
 
 export class TimerModule extends Module {
 

@@ -20,7 +20,6 @@ function init() {
     menu.add(new DiscoModule('DiscoModule'));
     menu.add(new MessengerModule('MessengerModule'));
     menu.add(new TimerModule('TimerModule'));
-
 }
 
 init();

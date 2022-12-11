@@ -1,6 +1,8 @@
 import {Module} from '@/core/module'
 import {randomColor} from "@/utils.js";
 
+// Над модулем работала Перепелкина Мария
+
 export class BackgroundModule extends Module {
     constructor(type) {
         super(type, 'Поменять цвет фона');

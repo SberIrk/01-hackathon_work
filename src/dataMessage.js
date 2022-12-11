@@ -1,3 +1,4 @@
+// Данные для рендомных сообщений для модуля custom.message
 export const dataMessage = [
     {
         "id": 1,

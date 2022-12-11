@@ -1,6 +1,8 @@
 import {Module} from '@/core/module'
 import {random} from "@/utils.js";
 
+// Над модулем работал Клопов Дмитрий
+
 export class SoundModule extends Module {
 
     #audioCtx = new (window.AudioContext || window.webkitAudioContext || window.audioContext);

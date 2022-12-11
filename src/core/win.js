@@ -1,7 +1,7 @@
 import {createElement} from "@/utils";
 
 // Модуль окна
-
+// Работа от Клопова Дмитрия
 
 export class CreateWin {
     title = ''
